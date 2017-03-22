@@ -1,0 +1,75 @@
+// http://ionicframework.com/docs/v2/theming/
+
+// App Global Sass
+// --------------------------------------------------
+// Put style rules here that you want to apply globally. These
+// styles are for the entire app and not just one component.
+// Additionally, this file can be also used as an entry point
+// to import other Sass files to be included in the output CSS.
+//
+// Shared Sass variables, which can be used to adjust Ionic's
+// default Sass variables, belong in "theme/variables.scss".
+//
+// To declare rules for a specific mode, create a child rule
+// for the .md, .ios, or .wp mode classes. The mode class is
+// automatically applied to the <body> element in the app.
+
+body {
+  -webkit-user-select: auto !important;
+  .scroll {
+    -webkit-user-select: inherit;
+  }
+}
+
+ion-menu {
+  max-width: 15% !important;
+  min-width: 200px !important;
+}
+
+.hidden-md {
+  @media screen and (max-width: 768px) {
+    display: none !important;
+  }
+}
+
+.hidden-sm {
+  @media screen and (max-width: 576px) {
+    display: none !important;
+  }
+}
+
+.hidden-lg {
+  @media screen and (max-width: 992px) {
+    display: none !important;
+  }
+}
+
+.hidden-xl {
+  @media screen and (max-width: 1200px) {
+    display: none !important;
+  }
+}
+
+.hide-above-md {
+  @media screen and (min-width: 768px) {
+    display: none !important;
+  }
+}
+
+.hide-above-sm {
+  @media screen and (min-width: 576px) {
+    display: none !important;
+  }
+}
+
+.hide-above-lg {
+  @media screen and (min-width: 992px) {
+    display: none !important;
+  }
+}
+
+.hide-above-xl {
+  @media screen and (min-width: 1200px) {
+    display: none !important;
+  }
+}
