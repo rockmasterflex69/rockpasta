@@ -43,20 +43,18 @@ export class HomeCards {
   getImage(searchText: string) {
     var target: string = searchText.trim().replace(/\s/g, "+");
     //strip the spaces out of target and replace them with +
-    var searchUrl: string = "https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=" + FLICKR_KEY + "&text=" + target + "&media=photos&per_page=1&format=json&nojsoncallback=1&api_sig=474c163c5f864b98cf668aa5294762a8";
+    var searchUrl: string = "https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=" + this.apiKey + "&tags=star+wars&text=" + target + "&media=photos&per_page=1&format=json&nojsoncallback=1";
     //https://farm{farm-id}.staticflickr.com/{server-id}/{id}_{secret}.jpg
     var flickrObject: FlickrReturn;
     var flickPic: FlickrPhoto;
-    var httpObject = this.http.get(searchUrl)
+    return this.http.get(searchUrl)
       .map(res => <FlickrReturn>res.json())
-      .catch(this.handleError)
-      .subscribe(
-        data => flickrObject = data,
-        (err) => console.error(err),
-        () => {
-          flickPic = flickrObject.photos.photo[0];
-          return "https://" + flickPic.farm + "staticflickr.com/" + flickPic.server + "/" + flickPic.id + "_" + flickPic.secret + ".jpg";
-        });
+      .catch(this.handleError);
+    //() => {
+    //  flickPic = flickrObject.photos.photo[0];
+    //  return "https://" + flickPic.farm + "staticflickr.com/" + flickPic.server + "/" + flickPic.id + "_" + flickPic.secret + ".jpg";
+    //}
+
   }
 
   handleError(error) {

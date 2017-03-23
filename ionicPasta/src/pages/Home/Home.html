@@ -13,12 +13,39 @@
 
       <ion-col *ngFor="let column of cardsArray; let c = index;">
       <ion-card *ngFor="let card of column; let i = index;">
+        <img src="{{card.jpeg}}"/>
         <ion-card-content>
           <ion-card-title>
             {{card.name}}
           </ion-card-title>
+          <ion-list>
+            <ion-item text-wrap>
+              <ion-icon name='pricetag'></ion-icon>
+              {{card.cost_in_credits}} Creds
+            </ion-item>
+            <ion-item text-wrap>
+              <ion-icon name='resize'></ion-icon>
+              {{card.length}} meters
+            </ion-item>
+            <ion-item text-wrap>
+              <ion-icon name='build'></ion-icon>
+              {{card.manufacturer}}
+            </ion-item>
+            <ion-item text-wrap>
+              <ion-icon name='jet'></ion-icon>
+              {{card.starship_class}}
+            </ion-item>
+            <ion-item text-wrap>
+              <ion-icon name='speedometer'></ion-icon>
+              HyperDrive {{card.hyperdrive_rating}}
+            </ion-item>
+          </ion-list>
           <p>
-            {{card.manufacturer}} {{card.url}}
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc at orci tincidunt, facilisis elit vel, dapibus
+            ante. Donec vel tempor ipsum. Vivamus hendrerit eleifend est, vitae bibendum nisi sollicitudin vel. Class
+            aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Donec aliquam ligula
+            ornare commodo lobortis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque malesuada, ex
+            ultrices lacinia viverra, mi velit convallis risus, quis mattis tortor ex et dui.
           </p>
         </ion-card-content>
       </ion-card>

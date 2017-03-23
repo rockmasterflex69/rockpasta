@@ -2,6 +2,7 @@ import {Component, HostListener, ChangeDetectorRef} from '@angular/core';
 import {NavController} from 'ionic-angular';
 import {HomeCards} from '../../providers/home-cards';
 import {ShipList} from '../../model/ship-list';
+import {FlickrPhoto} from "../../model/flickr-photo";
 
 @Component({
   selector: 'page-home',
@@ -37,9 +38,12 @@ export class Home {
       (err) => console.error(err),
       () => {
         this.cards = this.rawReturn.results;
+        //this.getMoreCards();
         this.splitCards();
       }
     );
+
+    //start with 2 pages of cards
     //split the cards into columns 3 for brick layout
   }
 
@@ -67,12 +71,33 @@ export class Home {
     for (var i = 0; i < this.cards.length; i++) {
       //this is where we will grab the photos!
       //https://stackoverflow.com/questions/12710905/how-do-i-dynamically-assign-properties-to-an-object-in-typescript
+      this.importImage(i, this.cards[i].name);
       var mod_cols: number = i % this.numCols;
       tempCards[mod_cols].push(this.cards[i]);
     }
 
     //mow that tempCards is filled, set it to cardsArray
     this.cardsArray = tempCards;
+  }
+
+  importImage(index: number, searchText: string) {
+    var rawResults;
+    var singleImage: FlickrPhoto;
+    var photoUrl: string;
+    this.homeCards.getImage(searchText).subscribe(
+      data => rawResults = data,
+      (err) => console.error(err),
+      () => {
+        singleImage = rawResults.photos.photo[0];
+        if (singleImage == null) {
+          photoUrl = "https://www.placecage.com/c/200/100";
+        } else {
+          photoUrl = "https://farm" + singleImage.farm + ".staticflickr.com/" + singleImage.server + "/" + singleImage.id + "_" + singleImage.secret + "_m.jpg";
+        }
+        console.log("Image for: " + index + ", " + searchText + ", " + photoUrl);
+        this.cards[index].jpeg = photoUrl;
+      }
+    );
   }
 
   @HostListener('window:resize', ['$event'])
@@ -104,7 +129,25 @@ export class Home {
         infiniteScroll.complete();
       }
     );
+  }
 
+  getMoreCards() {
+    var tempCards = [];
+    //console.log('Begin async operation');
+    this.homeCards.getNext(this.rawReturn.next).subscribe(
+      data => this.rawReturn = data,
+      (err) => console.error(err),
+      () => {
+        tempCards = this.rawReturn.results;
+        //console.log("Pushing # of cards: " + tempCards.length);
+        //console.log("Cards before: " + this.cards.length);
+        this.cards = this.cards.concat(tempCards);
+        //console.log("Cards after: " + this.cards.length);
+        //somehow the instant push takes.. time? idk, but splut only sees one new card each time and this sees more
+        this.splitCards();
+        this.ref.markForCheck();
+      }
+    );
   }
 
 }
