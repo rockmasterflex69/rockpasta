@@ -22,7 +22,7 @@ export class HomeCards {
   private cardsUrl = AppSettings.star_wars_api;
 
   private apiKey = AppSettings.FLICKR_KEY;
-  private imageSearchUrl = "https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=" + FLICKR_KEY + "&text=sentinel-class+landing+craft&media=photos&per_page=1&format=json&nojsoncallback=1&api_sig=474c163c5f864b98cf668aa5294762a8";
+  //private imageSearchUrl = "https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=" + this.apiKey + "&text=sentinel-class+landing+craft&media=photos&per_page=1&format=json&nojsoncallback=1&api_sig=474c163c5f864b98cf668aa5294762a8";
   constructor(public http: Http) {
     this.http = http;
     console.log('Hello HomeCards Provider');
