@@ -1,0 +1,59 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons start>
+      <button (click)="dismiss();" ion-button icon-only>
+        <ion-icon name="more"></ion-icon>
+      </button>
+    </ion-buttons>
+
+    <ion-title>{{cardData.name}}</ion-title>
+
+    <ion-buttons end>
+      <button (click)="dismiss();" ion-button icon-only>
+        <ion-icon name="close"></ion-icon>
+      </button>
+    </ion-buttons>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <img src="{{cardData.jpeg}}"/>
+  <ion-grid>
+    <ion-row wrap>
+      <ion-col padding width-33>
+        <ion-list>
+          <ion-item text-wrap>
+            <ion-icon name='pricetag'></ion-icon>
+            {{cardData.cost_in_credits}} Creds
+          </ion-item>
+          <ion-item text-wrap>
+            <ion-icon name='resize'></ion-icon>
+            {{cardData.length}} meters
+          </ion-item>
+          <ion-item text-wrap>
+            <ion-icon name='build'></ion-icon>
+            {{cardData.manufacturer}}
+          </ion-item>
+          <ion-item text-wrap>
+            <ion-icon name='jet'></ion-icon>
+            {{cardData.starship_class}}
+          </ion-item>
+          <ion-item text-wrap>
+            <ion-icon name='speedometer'></ion-icon>
+            HyperDrive {{cardData.hyperdrive_rating}}
+          </ion-item>
+        </ion-list>
+      </ion-col>
+      <ion-col padding width-33>
+        <p>{{cardData.longtext}}
+        </p>
+      </ion-col>
+      <ion-col width-33><img src="{{cardData.jpeg}}"/></ion-col>
+      <ion-col width-33><img src="{{cardData.jpeg}}"/></ion-col>
+      <ion-col width-33><img src="{{cardData.jpeg}}"/></ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <p>I'm Mr. Modal, look at meeee</p>
+</ion-content>

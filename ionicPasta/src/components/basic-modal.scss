@@ -1,0 +1,19 @@
+.modal-wrapper {
+  @media only screen and (min-width: 768px) and (min-height: 600px) {
+    height: 95vh !important;
+    width: 95vw !important;
+    top: 2% !important;
+    left: 2% !important;
+  }
+
+  img {
+    display: block;
+    max-width: 100%;
+    max-height: 75vh;
+    width: auto;
+    height: auto;
+    margin: 0 auto;
+  }
+
+}
+

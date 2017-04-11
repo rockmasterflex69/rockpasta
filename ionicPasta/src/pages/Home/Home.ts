@@ -1,8 +1,9 @@
 import {Component, HostListener, ChangeDetectorRef} from '@angular/core';
-import {NavController} from 'ionic-angular';
+import {NavController, ModalController} from 'ionic-angular';
 import {HomeCards} from '../../providers/home-cards';
 import {ShipList} from '../../model/ship-list';
 import {FlickrPhoto} from "../../model/flickr-photo";
+import {BasicModal} from "../../components/basic-modal";
 
 @Component({
   selector: 'page-home',
@@ -23,7 +24,7 @@ export class Home {
   private cardsArray = [];
   private innerWidth: number;
 
-  constructor(public navCtrl: NavController, homeCards: HomeCards, public cdRef: ChangeDetectorRef) {
+  constructor(public navCtrl: NavController, homeCards: HomeCards, public cdRef: ChangeDetectorRef, public modalCtrl: ModalController) {
     this.nav = navCtrl;
     this.ref = cdRef;
     this.homeCards = homeCards;
@@ -96,6 +97,8 @@ export class Home {
         }
         console.log("Image for: " + index + ", " + searchText + ", " + photoUrl);
         this.cards[index].jpeg = photoUrl;
+        this.cards[index].longtext = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc at orci tincidunt, facilisis elit vel, dapibus ante. Donec vel tempor ipsum. Vivamus hendrerit eleifend est, vitae bibendum nisi sollicitudin vel. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Donec aliquam ligula ornare commodo lobortis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque malesuada, ex ultrices lacinia viverra, mi velit convallis risus, quis mattis tortor ex et dui.";
+        //use a pipe to truncate this also move this addition to a different section, not here.
       }
     );
   }
@@ -148,6 +151,11 @@ export class Home {
         this.ref.markForCheck();
       }
     );
+  }
+
+  openModal(cardData) {
+    let modal = this.modalCtrl.create(BasicModal, {"cardData": cardData});
+    modal.present();
   }
 
 }

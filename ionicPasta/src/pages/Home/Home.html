@@ -13,7 +13,7 @@
 
       <ion-col *ngFor="let column of cardsArray; let c = index;">
       <ion-card *ngFor="let card of column; let i = index;">
-        <img src="{{card.jpeg}}"/>
+        <img (click)="openModal(card);" src="{{card.jpeg}}"/>
         <ion-card-content>
           <ion-card-title>
             {{card.name}}
@@ -41,11 +41,7 @@
             </ion-item>
           </ion-list>
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc at orci tincidunt, facilisis elit vel, dapibus
-            ante. Donec vel tempor ipsum. Vivamus hendrerit eleifend est, vitae bibendum nisi sollicitudin vel. Class
-            aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Donec aliquam ligula
-            ornare commodo lobortis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque malesuada, ex
-            ultrices lacinia viverra, mi velit convallis risus, quis mattis tortor ex et dui.
+            {{card.longtext}}
           </p>
         </ion-card-content>
       </ion-card>
